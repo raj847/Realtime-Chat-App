@@ -17,7 +17,7 @@ import {
 import {useState} from "react"
 
 function App() {
-  const {loginWithRedirect, getIdTokenClaims, logout} = useAuth0();
+  const {loginWithRedirect, getIdTokenClaims, logout, isAuthenticated} = useAuth0();
   const [token, setToken] = useState("")
   getIdTokenClaims().then(resp => {
     console.log(resp);
@@ -76,7 +76,7 @@ const client = new ApolloClient({
   // console.log(Auth0());
   return (
     <ApolloProvider client={client}>
-<div className="App">
+      {isAuthenticated ? (<Main/>) : (<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Button
@@ -97,7 +97,8 @@ const client = new ApolloClient({
           Logout
         </button>
       </header>
-    </div>
+    </div>)}
+
     </ApolloProvider>
     
   );
