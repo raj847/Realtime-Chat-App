@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useAuth0} from "@auth0/auth0-react"
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress } from '@material-ui/core';
 import Main from './pages/Main';
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
@@ -17,8 +17,13 @@ import {
 import {useState} from "react"
 
 function App() {
-  const {loginWithRedirect, getIdTokenClaims, logout, isAuthenticated} = useAuth0();
-  const [token, setToken] = useState("")
+  const {loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, isLoading} = useAuth0();
+  const [token, setToken] = useState("");
+
+  if(isLoading){
+    return <CircularProgress/>
+  }
+
   getIdTokenClaims().then(resp => {
     console.log(resp);
     if(resp){
