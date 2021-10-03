@@ -14,7 +14,8 @@ import {
   HttpLink,
   ApolloLink,
 } from "@apollo/client";
-import {useState} from "react"
+import {useState} from "react";
+import {  RecoilRoot } from 'recoil';
 
 function App() {
   const {loginWithRedirect, getIdTokenClaims, logout, isAuthenticated, isLoading} = useAuth0();
@@ -44,7 +45,7 @@ const wsLink = new WebSocketLink({
   },
 });
 const httpLink = new HttpLink({
-  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+  uri: "https://chat-app-miniproject.herokuapp.com/v1/graphql",
 });
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local cookie if it exists
@@ -68,17 +69,17 @@ const splitLink = split(
   httpLink
 );
 
-// const client = new ApolloClient({
-//   cache: new InMemoryCache(),
-//   link: ApolloLink.from([authLink, splitLink]),
-// });
 const client = new ApolloClient({
-  uri: "https://chat-app-miniproject.herokuapp.com/v1/graphql",
-  headers: {
-    "x-hasura-admin-secret": "aryadeva123",
-  },
   cache: new InMemoryCache(),
+  link: ApolloLink.from([authLink, splitLink]),
 });
+// const client = new ApolloClient({
+//   uri: "https://chat-app-miniproject.herokuapp.com/v1/graphql",
+//   headers: {
+//     "x-hasura-admin-secret": "aryadeva123",
+//   },
+//   cache: new InMemoryCache(),
+// });
 
 
 
@@ -89,7 +90,7 @@ const client = new ApolloClient({
   // console.log(Auth0());
   return (
     <ApolloProvider client={client}>
-      {isAuthenticated ? (<Main/>) : (<div className="App">
+      {isAuthenticated ? (<RecoilRoot><Main/></RecoilRoot>) : (<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Button

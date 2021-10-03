@@ -1,6 +1,7 @@
 
 import { makeStyles } from "@material-ui/core";
 import React from "react";
+import moment from "moment"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,13 +57,13 @@ const MessageBubble = (props) => {
   return (
     <div className={classes.root} >
       {!isMe &&
-        <img className={classes.img} alt="" src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairFrizzle&accessoriesType=Prescription02&hairColor=Black&facialHairType=BeardMedium&facialHairColor=BrownDark&clotheType=CollarSweater&clotheColor=Gray01&eyeType=Wink&eyebrowType=FlatNatural&mouthType=Vomit&skinColor=DarkBrown" />
+        <img className={classes.img} alt="" src={message.fromUser.picture} />
       }
       <div className={classes.bubble}>
         <div>
           {message.message}
         </div>
-        <div className={classes.timestamp}>{message.createdAt}</div>
+        <div className={classes.timestamp}>{moment(message.createdAt).format("L LT")}</div>
       </div>
     </div>
   );

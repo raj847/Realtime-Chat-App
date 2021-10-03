@@ -11,10 +11,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
-import MessageBubble from "../../components/MessageBubble";
+// import MessageBubble from "../../components/MessageBubble";
 // import ContactList from "../../components/ContactList";
 import Contact from "./Contact"
-// import Message from "./Message";
+import Message from "./Message";
+import MessageHeader from "./MessageHeader";
+import MessageForm from "./MessageForm";
 
 const drawerWidth = 300;
 
@@ -111,9 +113,7 @@ const Main = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Arya
-          </Typography>
+          <MessageHeader></MessageHeader>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -151,22 +151,13 @@ const Main = (props) => {
         <div className={classes.toolbar} />
 
         <div className={classes.chatContent}>
-            <MessageBubble isMe={false} message={{message: "hai saya arya bukan hello world", createdAt:"30 Sep 2021"}}></MessageBubble>
-            <MessageBubble isMe={true} message={{message: "hai arya saya hello world", createdAt:"30 Sep 2021"}}></MessageBubble>
-            {/* <Message></Message> */}
+            {/* <MessageBubble isMe={false} message={{message: "hai saya arya bukan hello world", createdAt:"30 Sep 2021"}}></MessageBubble>
+            <MessageBubble isMe={true} message={{message: "hai arya saya hello world", createdAt:"30 Sep 2021"}}></MessageBubble> */}
+            <Message></Message>
         </div>
 
         <div className={classes.chatFooter}>
-          <form className={classes.messageForm} noValidate autoComplete="off">
-            <TextField
-              id="input-message"
-              className={classes.messageForm.input}
-              variant="outlined"
-              placeholder="type your message..."
-              fullWidth={true}
-              style={{ background: "#fff" }}
-            />
-          </form>
+          <MessageForm></MessageForm>
         </div>
       </main>
     </div>
