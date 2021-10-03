@@ -13,7 +13,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 import MessageBubble from "../../components/MessageBubble";
 // import ContactList from "../../components/ContactList";
-import Contact from "./Contact";
+import Contact from "./Contact"
+// import Message from "./Message";
 
 const drawerWidth = 300;
 
@@ -89,7 +90,7 @@ const Main = (props) => {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Contact/>
+      <Contact></Contact>
     </div>
   );
 
@@ -152,6 +153,7 @@ const Main = (props) => {
         <div className={classes.chatContent}>
             <MessageBubble isMe={false} message={{message: "hai saya arya bukan hello world", createdAt:"30 Sep 2021"}}></MessageBubble>
             <MessageBubble isMe={true} message={{message: "hai arya saya hello world", createdAt:"30 Sep 2021"}}></MessageBubble>
+            {/* <Message></Message> */}
         </div>
 
         <div className={classes.chatFooter}>

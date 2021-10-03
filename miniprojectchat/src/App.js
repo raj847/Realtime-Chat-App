@@ -68,10 +68,18 @@ const splitLink = split(
   httpLink
 );
 
+// const client = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   link: ApolloLink.from([authLink, splitLink]),
+// });
 const client = new ApolloClient({
+  uri: "https://chat-app-miniproject.herokuapp.com/v1/graphql",
+  headers: {
+    "x-hasura-admin-secret": "aryadeva123",
+  },
   cache: new InMemoryCache(),
-  link: ApolloLink.from([authLink, splitLink]),
 });
+
 
 
 
