@@ -3,10 +3,14 @@ import ContactList from "../../../components/ContactList";
 import { Divider } from "@material-ui/core";
 import { useRecoilState } from "recoil";
 import { selectedUserState } from "../../../recoil";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const GET_USERS = gql`
-query MyQuery($order_by: [users_order_by!] = {name: desc}) {
-    users(order_by: $order_by) {
+query MyQuery(
+    $order_by: [users_order_by!] = { name: desc }
+    $_neq: String = ""
+  ) {
+    users(order_by: $order_by, where: { id: { _neq: $_neq } }) {
       id
       name
       picture
@@ -15,7 +19,8 @@ query MyQuery($order_by: [users_order_by!] = {name: desc}) {
   `;
 
 const Contact = () => {
-    const { data } = useQuery(GET_USERS, {variables: {order_by: {name: "asc"}},
+    const { user } = useAuth0()
+    const { data } = useQuery(GET_USERS, {variables: {order_by: {name: "asc"},_neq: user.sub},
     });
     // const [selectedUser, setSelectedUser] = useRecoilState(selectedUserState);
     const setSelectedUser = useRecoilState(selectedUserState)[1];
