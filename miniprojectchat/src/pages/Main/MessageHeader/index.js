@@ -8,11 +8,13 @@ const MessageHeader = () => {
     const [selectedUser] = useRecoilState(selectedUserState);
     const {logout} = useAuth0();
 
+    console.log("blabla",process.env.REACT_APP_BASE_URL);
     return(
         <Typography variant="h6" noWrap style={{ width: "100%" }}>
             {selectedUser?.name}
             <ExitToApp style={{ float: "right" }} onClick={()=>logout({
-                returnTo:"http://localhost:3000"
+                // returnTo:"http://localhost:3000"
+                returnTo:process.env.REACT_APP_BASE_URL
             })}></ExitToApp>
           </Typography>
     )
