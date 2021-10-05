@@ -28,7 +28,7 @@ const Contact = () => {
     if(data && data.users){
         users.push(...data.users)
     }
-    console.log("data p",data);
+    console.log("data kontak",data);
     return(
         <div>
             {users.map((u) => {
