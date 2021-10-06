@@ -1,12 +1,12 @@
 import { useSubscription } from "@apollo/client";
-import { useRecoilState } from "recoil"
-import { selectedUserState } from "../../../recoil"
+import { useRecoilState } from "recoil";
+import { selectedUserState } from "../../../recoil";
 import gql from "graphql-tag";
-import MessageBubble from "../../../components/MessageBubble"
+import MessageBubble from "../../../components/MessageBubble";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const GET_MESSAGE = gql`
-subscription MyQuery($where: messages_bool_exp = {}) {
+  subscription MyQuery($where: messages_bool_exp = {}) {
     messages(where: $where, order_by: { createdAt: asc }) {
       id
       fromUserId
@@ -17,12 +17,13 @@ subscription MyQuery($where: messages_bool_exp = {}) {
       }
       createdAt
     }
-  }`
+  }
+`;
 
 const Message = () => {
-    const [selectedUser] = useRecoilState(selectedUserState);
-    const {user} = useAuth0()
-    
+  const [selectedUser] = useRecoilState(selectedUserState);
+  const { user } = useAuth0();
+
   let params = { where: {} };
   if (selectedUser && !selectedUser.id) {
     params.where = {
@@ -53,24 +54,24 @@ const Message = () => {
     };
   }
 
-    // let params = {};
-    // if(selectedUser && !selectedUser.id){
-    //     params = {
-    //         toUserId:{
-    //             toUserId:{
-    //                 _is_null: true,
-    //             }
-    //         }
-    //     }
-    // } else if (selectedUser && selectedUser.id){
-    //     params = {
-    //         toUserId: {
-    //             _eq: selectedUser.id,
-    //         },
-    //     };
-    // }
-    const{data}=useSubscription(GET_MESSAGE,{variables: params})
-    
+  // let params = {};
+  // if(selectedUser && !selectedUser.id){
+  //     params = {
+  //         toUserId:{
+  //             toUserId:{
+  //                 _is_null: true,
+  //             }
+  //         }
+  //     }
+  // } else if (selectedUser && selectedUser.id){
+  //     params = {
+  //         toUserId: {
+  //             _eq: selectedUser.id,
+  //         },
+  //     };
+  // }
+  const { data } = useSubscription(GET_MESSAGE, { variables: params });
+
   setTimeout(() => {
     const cb = document.getElementById("chat-content").parentElement;
     if (cb) {
@@ -78,16 +79,21 @@ const Message = () => {
     }
   }, 200);
 
-    console.log("datahahihu",data);
-    console.log("selectedUser", selectedUser);
-    return(
+  console.log("datahahihu", data);
+  console.log("selectedUser", selectedUser);
+  return (
     <div id="chat-content">
-        {data?.messages.map(m=>{
-            return <MessageBubble message={m} key={m.id} isMe={user.sub === m.fromUserId}></MessageBubble>
-        
-        })}
+      {data?.messages.map((m) => {
+        return (
+          <MessageBubble
+            message={m}
+            key={m.id}
+            isMe={user.sub === m.fromUserId}
+          ></MessageBubble>
+        );
+      })}
     </div>
-    )
-}
+  );
+};
 
 export default Message;

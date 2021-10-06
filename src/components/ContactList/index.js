@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: "40px",
     marginRight: theme.spacing(2),
-  }
+  },
 }));
 
 const ContactList = (props) => {
@@ -24,4 +24,3 @@ const ContactList = (props) => {
 };
 
 export default ContactList;
-

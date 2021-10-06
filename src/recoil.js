@@ -2,5 +2,5 @@ import { atom } from "recoil";
 
 export const selectedUserState = atom({
   key: "selectedUser",
-  default: { id: null, name: "Ruang Ghibah"},
+  default: { id: null, name: "Ruang Ghibah" },
 });

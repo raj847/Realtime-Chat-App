@@ -1,7 +1,6 @@
-
 import { makeStyles } from "@material-ui/core";
 import React from "react";
-import moment from "moment"
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     justifyContent: "flex-end",
     padding: "0 16px 4px",
-    paddingLeft: props => props.isMe ? "40px" : "16px",
+    paddingLeft: (props) => (props.isMe ? "40px" : "16px"),
     marginTop: "40px",
   },
 
@@ -32,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "12px",
     maxWidth: "100%",
     borderRadius: "20px",
-    backgroundColor: props => props.isMe ? "#e0e0e0" : "#3c4252",
-    color: props => props.isMe ? "rgba(0,0,0,.87)" : "#fff",
-    marginLeft: props => props.isMe ? "auto" : "initial",
+    backgroundColor: (props) => (props.isMe ? "#e0e0e0" : "#3c4252"),
+    color: (props) => (props.isMe ? "rgba(0,0,0,.87)" : "#fff"),
+    marginLeft: (props) => (props.isMe ? "auto" : "initial"),
   },
 
   timestamp: {
@@ -46,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
     left: "0",
     whiteSpace: "nowrap",
     color: "#999",
-    textAlign: props => props.isMe ? "right" : "left",
-  }
+    textAlign: (props) => (props.isMe ? "right" : "left"),
+  },
 }));
 
 const MessageBubble = (props) => {
@@ -55,19 +54,18 @@ const MessageBubble = (props) => {
   const { isMe, message } = props;
 
   return (
-    <div className={classes.root} >
-      {!isMe &&
+    <div className={classes.root}>
+      {!isMe && (
         <img className={classes.img} alt="" src={message.fromUser.picture} />
-      }
+      )}
       <div className={classes.bubble}>
-        <div>
-          {message.message}
+        <div>{message.message}</div>
+        <div className={classes.timestamp}>
+          {moment(message.createdAt).format("L LT")}
         </div>
-        <div className={classes.timestamp}>{moment(message.createdAt).format("L LT")}</div>
       </div>
     </div>
   );
 };
 
 export default MessageBubble;
-

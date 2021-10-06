@@ -1,4 +1,3 @@
-
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,7 +12,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 // import { TextField } from "@material-ui/core";
 // import MessageBubble from "../../components/MessageBubble";
 // import ContactList from "../../components/ContactList";
-import Contact from "./Contact"
+import Contact from "./Contact";
 import Message from "./Message";
 import MessageHeader from "./MessageHeader";
 import MessageForm from "./MessageForm";
@@ -151,9 +150,9 @@ const Main = (props) => {
         <div className={classes.toolbar} />
 
         <div className={classes.chatContent}>
-            {/* <MessageBubble isMe={false} message={{message: "hai saya arya bukan hello world", createdAt:"30 Sep 2021"}}></MessageBubble>
+          {/* <MessageBubble isMe={false} message={{message: "hai saya arya bukan hello world", createdAt:"30 Sep 2021"}}></MessageBubble>
             <MessageBubble isMe={true} message={{message: "hai arya saya hello world", createdAt:"30 Sep 2021"}}></MessageBubble> */}
-            <Message></Message>
+          <Message></Message>
         </div>
 
         <div className={classes.chatFooter}>
@@ -165,4 +164,3 @@ const Main = (props) => {
 };
 
 export default Main;
-
