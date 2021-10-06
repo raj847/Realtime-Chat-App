@@ -11,8 +11,8 @@ ReactDOM.render(
   <Auth0Provider
     domain="dev-py1i6uxp.us.auth0.com"
     clientId="Hxp2x3Fwr1cciDAzhaj76luYXUyBidCy"
-    redirectUri="http://localhost:3000"
-    // redirectUri={process.env.REACT_APP_BASE_URL}
+    // redirectUri="http://localhost:3000"
+    redirectUri={process.env.REACT_APP_BASE_URL}
     scope="read:current_user update:current_user_metadata"
   >
     <App />
