@@ -6,11 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import {Auth0Provider} from '@auth0/auth0-react'
 
 console.log("redirekuri",process.env.REACT_APP_BASE_URL);
+console.log("lainlain",process.env.REACT_APP_AUTH0_CLIENTID );
+console.log("loanloan",process.env.REACT_APP_AUTH0_DOMAIN );
+
+const clientId=process.env.REACT_APP_AUTH0_CLIENTID
+console.log("client",clientId);
 
 ReactDOM.render(
   <Auth0Provider
-    domain="dev-py1i6uxp.us.auth0.com"
-    clientId="Hxp2x3Fwr1cciDAzhaj76luYXUyBidCy"
+    domain={process.env.REACT_APP_AUTH0_DOMAIN}
+    clientId={process.env.REACT_APP_AUTH0_CLIENTID}
     // redirectUri="http://localhost:3000"
     redirectUri={process.env.REACT_APP_BASE_URL}
     scope="read:current_user update:current_user_metadata"

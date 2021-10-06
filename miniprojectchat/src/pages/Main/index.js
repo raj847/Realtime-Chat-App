@@ -8,9 +8,9 @@ import IconButton from "@material-ui/core/IconButton";
 // import List from "@material-ui/core/List";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { TextField } from "@material-ui/core";
+// import { TextField } from "@material-ui/core";
 // import MessageBubble from "../../components/MessageBubble";
 // import ContactList from "../../components/ContactList";
 import Contact from "./Contact"

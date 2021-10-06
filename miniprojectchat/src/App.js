@@ -34,7 +34,7 @@ function App() {
 
   
 const wsLink = new WebSocketLink({
-  uri: "wss://chat-app-miniproject.herokuapp.com/v1/graphql",
+  uri: process.env.REACT_APP_GRAPHQL_WEBSOCKET,
   options: {
     reconnect: true,
     connectionParams: {
@@ -44,8 +44,10 @@ const wsLink = new WebSocketLink({
     },
   },
 });
+console.log("apasaja",process.env.REACT_APP_GRAPHQL_ENDPOINT);
+console.log("apasaja123",process.env.REACT_APP_GRAPHQL_WEBSOCKET);
 const httpLink = new HttpLink({
-  uri: "https://chat-app-miniproject.herokuapp.com/v1/graphql",
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
 });
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local cookie if it exists
